@@ -1,0 +1,34 @@
+<div th:fragment="tree-content">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="scrollbar-div scrollbar-div-1">
+                            <div class="scrollbar">
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-search"></span>
+                                    <input type="text" class="form-control" id="search-node" placeholder="Search" />
+                                </div>
+                                <div id="jstree"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- .col-xs-2 -->
+            <div class="col-xs-9">
+                <div class="panel panel-default right-content">
+                    <div class="panel-heading">
+                        <span>Path:</span><span id="address-path"></span>
+                        <span class="pull-right" id="save-tree">SAVE</span>
+                    </div>
+                    <div class="panel-body">
+                        <iframe src="/redis/content" id="right-content-iframe" width="100%"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div><!-- .row -->
+    </div><!-- .container-fluid -->
+
+</div>

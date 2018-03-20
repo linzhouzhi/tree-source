@@ -1,0 +1,21 @@
+.jstree-hovered{
+    
+}
+div.input-group > .glyphicon-search{
+    top:0px;
+}
+.container-fluid,.panel,.col-xs-3,.col-xs-9{
+    padding: 0px;
+    margin: 0px;
+    border-radius: 0px;
+}
+.panel-body{
+    border-left: 0px;
+}
+div.right-content{
+    border-left: 0px;
+}
+
+#save-tree{
+    margin-right: 15px;
+}

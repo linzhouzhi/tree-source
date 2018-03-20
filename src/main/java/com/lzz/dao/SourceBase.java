@@ -3,12 +3,16 @@ package com.lzz.dao;
 import com.lzz.model.Tnode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lzz on 2018/3/18.
  */
 public abstract class SourceBase implements ITreeSource {
+    protected Map<String, Integer> chidrenMap = new HashMap<>();
+
     protected Tnode getTnodeList(SourceBase sourceBase, Tnode tnode) throws Exception {
         this.tnodeTemplate(this, tnode);
         this.close();
@@ -50,7 +54,7 @@ public abstract class SourceBase implements ITreeSource {
                 tnode1.setType("leaf");
             }
             childNode.add( tnode1);
-            if( i > 50 ){
+            if( i > 200 ){
                 childNode.add( new Tnode(path+ "/...", "...", "ellipsis") );
                 break;
             }
@@ -59,7 +63,12 @@ public abstract class SourceBase implements ITreeSource {
 
     }
 
-    public abstract int getNumChildren(String childPath) throws Exception;
+    public int getNumChildren(String childPath) throws Exception {
+        if( null == chidrenMap.get( childPath ) ){
+            childrenList(childPath);
+        }
+        return chidrenMap.get( childPath );
+    }
 
 
     public abstract List<String> childrenList(String path) throws Exception;

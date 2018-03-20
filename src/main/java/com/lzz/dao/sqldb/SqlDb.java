@@ -3,9 +3,9 @@ package com.lzz.dao.sqldb;
 import com.lzz.dao.SourceBase;
 import com.lzz.model.SqlDbType;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by lzz on 2018/3/19.
@@ -37,7 +37,35 @@ public abstract class SqlDb extends SourceBase{
     }
 
 
+    @Override
+    public List<String> childrenList(String path) throws Exception {
+        List<String> childrens = new ArrayList<>();
+        ResultSet rs = null;
+        try {
+            DatabaseMetaData metaData = conn.getMetaData();
+            if( path.equals("/") ){ // databases;
+                rs = metaData.getCatalogs();
+                while (rs.next()) {
+                    childrens.add( rs.getString("TABLE_CAT") );
+                }
+            }else if( path.split("/").length == 2 ){ // tables
+                rs = metaData.getTables( path.split("/")[1], null, "%", new String[]{"TABLE"});
+                while (rs.next()) {
+                    childrens.add( rs.getString("TABLE_NAME") );
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if( rs != null ){
+                rs.close();
+            }
+        }
+        chidrenMap.put(path, childrens.size());
+        return childrens;
+    }
 
+    @Override
     public void close() {
         try {
             stmt.close();

@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/tree-header" />
+<body>
+<div th:include="common/tree-content ::  tree-content"></div>
+<div th:include="common/address-modal ::  modal"></div>
+<script src="../js/common.js"></script>
+<script src="../js/tree-source.js"></script>
+<script th:inline="JavaScript">
+    /*<![CDATA[*/
+
+    /*]]>*/
+</script>
+</body>
+</html>

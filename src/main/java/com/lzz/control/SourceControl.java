@@ -25,19 +25,19 @@ public class SourceControl {
         String page = "welcome";
         switch (type){
             case zk:
-                page = "zk";
+                page = "zk/index";
                 break;
             case hbase:
-                page = "hbase";
+                page = "hbase/index";
                 break;
             case kafka:
-                page = "kafka";
+                page = "kafka/index";
                 break;
             case mysql:
-                page = "mysql";
+                page = "mysql/index";
                 break;
             case redis:
-                page = "redis";
+                page = "redis/index";
                 break;
         }
         return page;

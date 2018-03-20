@@ -37,16 +37,6 @@ public class KafkaClient extends SourceBase implements IKafkaClient {
         }
     }
 
-    @Override
-    public int getNumChildren(String childPath) throws Exception {
-        int childrenNum = 0;
-        if( childPath.equals("/") ){
-            childrenNum = getTopicNum();
-        }else if( childPath.split("/").length == 2 ){
-            childrenNum = getConsumerNum(childPath);
-        }
-        return childrenNum;
-    }
 
     @Override
     public List<String> childrenList(String path) throws Exception {
@@ -55,29 +45,17 @@ public class KafkaClient extends SourceBase implements IKafkaClient {
             cList = curatorClient.childrenList("/brokers/topics");
         }else if( path.split("/").length == 2 ){
             Set<String> consumerList = topicConsumerMap.get( path.split("/")[1] );
-            cList = Lists.newArrayList(consumerList);
+            if( null != consumerList ){
+                cList = Lists.newArrayList(consumerList);
+            }
         }
+        chidrenMap.put( path, cList.size());
         return cList;
     }
 
     @Override
     public void close() {
         this.curatorClient.close();
-    }
-
-    private int getConsumerNum(String childPath) throws Exception {
-        String topic = childPath.split("/")[1];
-        int num = 0;
-        Set<String> consumerSet = topicConsumerMap.get( topic );
-        if( null != consumerSet ){
-            num = consumerSet.size();
-        }
-        return num;
-    }
-
-    private int getTopicNum() throws Exception {
-        int num = curatorClient.getNumChildren("/brokers/topics");
-        return num;
     }
 
 }

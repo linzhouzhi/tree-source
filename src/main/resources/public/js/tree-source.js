@@ -9,6 +9,14 @@ $("input[name='modal-input-address']").bind('keypress', function (event) {
     }
 })
 
+$("a.jstree-anchor").on("mouseover mouseout",function(event){
+    if(event.type == "mouseover"){
+        //$("#address-path").text(path);
+    }else if(event.type == "mouseout"){
+        //$("#address-path").text("");
+    }
+});
+
 $(function () {
     var to = false;
     $('#search-node').keyup(function () {
@@ -66,8 +74,6 @@ $(function () {
     $('#jstree').on("changed.jstree", function (e, data) {
         var path = data.selected[0];
         $("#address-path").text(path);
-        $("#input-path").val(path);
-        console.log(path);
     });
 
     $("#jstree").on("open_node.jstree", function (e, data) {

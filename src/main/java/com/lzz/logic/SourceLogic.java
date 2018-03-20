@@ -1,8 +1,9 @@
 package com.lzz.logic;
 
 import com.lzz.dao.ITreeSource;
+import com.lzz.dao.hbase.HbaseClient;
 import com.lzz.dao.kafka.KafkaClient;
-import com.lzz.dao.redis.JedisClient;
+import com.lzz.dao.redis.RedisManager;
 import com.lzz.dao.sqldb.Mysql;
 import com.lzz.dao.zk.CuratorClient;
 import com.lzz.model.SourceType;
@@ -36,7 +37,11 @@ public class SourceLogic {
                 resNode = s.getTnodeList( tnode );
                 break;
             case redis:
-                s = new JedisClient( address );
+                s = (new RedisManager()).factory(address);
+                resNode = s.getTnodeList( tnode );
+                break;
+            case hbase:
+                s = new HbaseClient( address );
                 resNode = s.getTnodeList( tnode );
                 break;
         }

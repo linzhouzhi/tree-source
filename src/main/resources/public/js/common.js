@@ -1,6 +1,11 @@
 /**
  * Created by lzz on 2018/3/12.
  */
+$(document).ready(function () {
+    var height = $(window).height() - 120;
+    var style_height = "height:" + height + "px";
+    $("#right-content-iframe").attr("style", style_height);
+});
 
 function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象

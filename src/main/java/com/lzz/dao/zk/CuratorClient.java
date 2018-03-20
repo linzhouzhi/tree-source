@@ -4,7 +4,6 @@ import com.lzz.dao.SourceBase;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.RetryNTimes;
-import org.apache.zookeeper.data.Stat;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -29,15 +28,11 @@ public class CuratorClient extends SourceBase implements IZookeeperClient {
         client.start();
     }
 
-    @Override
-    public int getNumChildren(String childPath) throws Exception {
-        Stat stat = client.checkExists().forPath( childPath );
-        return stat.getNumChildren();
-    }
 
     @Override
     public List<String> childrenList(String path) throws Exception {
         List<String> childrenList = this.client.getChildren().forPath( path );
+        chidrenMap.put(path, childrenList.size());
         return childrenList;
     }
 
