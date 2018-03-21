@@ -42,7 +42,6 @@ public abstract class SourceBase implements ITreeSource {
             tnode1.setId( childPath );
             int childrenNum = sourceBase.getNumChildren( childPath );
             if( childrenNum > 0 ){
-                tnode1.setType("parent");
                 List<Tnode> grandson = new ArrayList<>();
                 Tnode ellipsisNode = new Tnode();
                 ellipsisNode.setType("ellipsis");
@@ -50,9 +49,9 @@ public abstract class SourceBase implements ITreeSource {
                 ellipsisNode.setText("...");
                 grandson.add( ellipsisNode );
                 tnode1.setChildren( grandson );
-            }else{
-                tnode1.setType("leaf");
             }
+            String nodeType = sourceBase.nodeType(childPath, childrenNum);
+            tnode1.setType( nodeType );
             childNode.add( tnode1);
             if( i > 200 ){
                 childNode.add( new Tnode(path+ "/...", "...", "ellipsis") );
@@ -62,6 +61,16 @@ public abstract class SourceBase implements ITreeSource {
         return tnode;
 
     }
+
+    // 子类覆盖后定义自己的样式
+    private String nodeType(String childPath, int childrenNum) {
+        String type = "parent";
+        if( childrenNum == 0 ){
+            type = "leaf";
+        }
+        return type;
+    }
+
 
     public int getNumChildren(String childPath) throws Exception {
         if( null == chidrenMap.get( childPath ) ){
