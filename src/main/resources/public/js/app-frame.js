@@ -3,7 +3,36 @@
  */
 
 $(document).ready(function () {
+    $(document).on("click", ".ajax-ul", function () {
+        var group = $(this).data("target");
+        get('/source-group-list?group=' + group, function (obj) {
+            var list = obj.res;
+            var target = "#ul-" + group;
+            $(target + " > li").not(":first").remove();
+            for(var i = 0; i < list.length; i++){
+                var sourceObj = list[i];
+                var showName = sourceObj.type + "_" + sourceObj.showName;
+                var li_con = '<li><a data-url="/source?type=' + sourceObj.type + '&address=' + sourceObj.address + '"  class="tab-link"><i class="fa fa-remove remove-source pointer" data-target="' + showName + '"></i>' + sourceObj.showName + '</a></li>';
+                $( target ).append( li_con );
+            }
+        });
+    });
+});
 
+$(document).on("click", ".remove-source", function (event) {
+    event.stopPropagation();
+    var target = $(this).data("target");
+    $("#modal-confirm-delete").data("url", "/remove-source?target=" + target);
+    $('#delete-source-modal').modal('show');
+});
+
+
+$("#modal-confirm-delete").click(function () {
+    var url = $(this).data("url");
+    $.get(url, function (res) {
+        console.log(res);
+        window.location.reload();
+    });
 });
 
 var $ = jQuery.noConflict();

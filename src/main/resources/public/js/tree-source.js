@@ -2,10 +2,57 @@
  * Created by lzz on 2018/3/19.
  */
 
+window.tree_node_type = {
+    "default" : {
+        "icon" : "glyphicon glyphicon-flash"
+    },
+    "leaf" : {
+        "icon" : "glyphicon glyphicon-flash"
+    },
+    "tmp-leaf" : {
+        "icon" : "glyphicon glyphicon-flash"
+    },
+    "ellipsis" : {
+        "icon" : "glyphicon glyphicon-flash"
+    },
+    "parent" : {
+        "icon" : "glyphicon glyphicon-ok"
+    }
+};
+
+$(document).ready(function () {
+    var address = getUrlParam("address");
+    $("#show-address").data( "address", address );
+    if( address ){
+        $("#show-address").text( address.split(",")[0] );
+    }
+});
+
+$("#save-tree").click(function () {
+    $(".save-modal").removeClass("hidden");
+    $("#address-input-modal").modal("show");
+    var type = getUrlParam("type");
+    var address = getUrlParam("address");
+    if( type == "mysql" ){
+        getUrlParam("address");
+    }
+    $('[name="modal-input-address"]').val( address );
+});
+
+$("#save-address-footer-button").click(function () {
+    var data = {};
+    data.address = $('[name="modal-input-address"]').val();
+    data.type = getUrlParam("type");
+    data.showName = $('[name="modal-show-name"]').val();
+    post("/save-source", data, function (obj) {
+        console.log( obj );
+    });
+});
 
 $("input[name='modal-input-address']").bind('keypress', function (event) {
     if (event.keyCode == "13") {
-        window.location.href = window.location.href + "&address=" + $(this).val().trim();
+        var address_str = $(this).val().trim();
+        window.location.href = window.location.href + "&address=" + address_str;
     }
 })
 
@@ -32,7 +79,7 @@ $(function () {
         path = "/";
     }
     var address = getUrlParam('address');
-    if( typeof address == "undefined" || address == null ){
+    if( typeof address == "undefined" || address == null || address == "" ){
         $("#address-input-modal").modal("show");
     }
     window.address = address;
@@ -50,23 +97,7 @@ $(function () {
                 }
             }
         },
-        "types" : {
-            "default" : {
-                "icon" : "glyphicon glyphicon-flash"
-            },
-            "leaf" : {
-                "icon" : "glyphicon glyphicon-flash"
-            },
-            "tmp-leaf" : {
-                "icon" : "glyphicon glyphicon-flash"
-            },
-            "ellipsis" : {
-                "icon" : "glyphicon glyphicon-flash"
-            },
-            "parent" : {
-                "icon" : "glyphicon glyphicon-ok"
-            }
-        },
+        "types" : window.tree_node_type,
         "plugins" : [ "search","types","state" ]
     });
 

@@ -30,6 +30,9 @@
     border-color: #e1e4e8;
 }
 
+.pointer{
+    cursor: pointer;
+}
 #right-content-iframe{
     border: none;
 }

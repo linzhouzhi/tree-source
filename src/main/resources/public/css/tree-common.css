@@ -3,6 +3,7 @@
 }
 div.input-group > .glyphicon-search{
     top:0px;
+    background-color: #fff;
 }
 .container-fluid,.panel,.col-xs-3,.col-xs-9{
     padding: 0px;
@@ -15,7 +16,13 @@ div.input-group > .glyphicon-search{
 div.right-content{
     border-left: 0px;
 }
+div.right-content > .panel-heading{
+    background-color: #fff;
+}
 
 #save-tree{
     margin-right: 15px;
+    margin-left: 15px;
+    font-size: 18px;
+    cursor: pointer;
 }

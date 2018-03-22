@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<elements>
+	<element key="mysql_tetst" value="{&quot;address&quot;:&quot;127.0.0.1,root,root&quot;,&quot;showName&quot;:&quot;tetst&quot;,&quot;type&quot;:&quot;mysql&quot;}"/>
+	<element key="mysql_tetst23" value="{&quot;address&quot;:&quot;127.0.0.1,root,root&quot;,&quot;showName&quot;:&quot;tetst23&quot;,&quot;type&quot;:&quot;mysql&quot;}"/>
+	<element key="mysql_cdsafdsa" value="{&quot;address&quot;:&quot;127.0.0.1,root,root&quot;,&quot;showName&quot;:&quot;cdsafdsa&quot;,&quot;type&quot;:&quot;mysql&quot;}"/>
+</elements>

@@ -51,6 +51,15 @@
             white-space:nowrap;
             width:200px;
         }
+        a.tab-link{
+            cursor: default;
+        }
+        .pointer{
+            cursor: pointer;
+        }
+        .remove-source{
+            z-index:100000
+        }
     </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -77,59 +86,59 @@
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
             <ul class="sidebar-menu">
-                <li class="treeview">
+                <li class="treeview ajax-ul" data-target="zk">
                     <a href="#">
                         <i class="fa fa-github"></i> <span>Zookeeper</span>
                         <span class="pull-right-container">
                           <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a data-url="/source?type=zk" class="tab-link"><i class="fa fa-street-view"></i> VisitorZK</a></li>
+                    <ul class="treeview-menu" id="ul-zk">
+                        <li><a data-url="/source?type=zk" class="tab-link"><i class="fa fa-search"></i> VisitorZK</a></li>
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="treeview ajax-ul" data-target="hbase">
                     <a href="#">
                         <i class="fa  fa-github"></i> <span>Hbase</span>
                         <span class="pull-right-container">
                           <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a data-url="/source?type=hbase" class="tab-link"><i class="fa fa-street-view"></i> VisitorHbase</a></li>
+                    <ul class="treeview-menu" id="ul-hbase">
+                        <li><a data-url="/source?type=hbase" class="tab-link"><i class="fa fa-search"></i> VisitorHbase</a></li>
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="treeview ajax-ul" data-target="kafka">
                     <a href="#">
                         <i class="fa  fa-github"></i> <span>Kafka</span>
                         <span class="pull-right-container">
                           <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a data-url="/source?type=kafka" class="tab-link"><i class="fa fa-street-view"></i> VisitorKafka</a></li>
+                    <ul class="treeview-menu" id="ul-kafka">
+                        <li><a data-url="/source?type=kafka" class="tab-link"><i class="fa fa-search"></i> VisitorKafka</a></li>
                     </ul>
                 </li>
-                <li class="active treeview">
+                <li class="treeview ajax-ul" data-target="redis">
                     <a href="#">
                         <i class="fa  fa-github"></i> <span>Redis</span>
                         <span class="pull-right-container">
                           <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a data-url="/source?type=redis" class="tab-link"><i class="fa fa-street-view"></i> VisitorRedis</a></li>
+                    <ul class="treeview-menu" id="ul-redis">
+                        <li><a data-url="/source?type=redis" class="tab-link"><i class="fa fa-search"></i> VisitorRedis</a></li>
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="treeview ajax-ul" data-target="mysql">
                     <a href="#">
                         <i class="fa  fa-github"></i> <span>Mysql</span>
                         <span class="pull-right-container">
                           <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a data-url="/source?type=mysql" class="tab-link"><i class="fa fa-street-view"></i> VisitorMysql</a></li>
+                    <ul class="treeview-menu" id="ul-mysql">
+                        <li><a data-url="/source?type=mysql" class="tab-link"><i class="fa fa-search"></i> VisitorMysql</a></li>
                     </ul>
                 </li>
             </ul>
@@ -150,6 +159,25 @@
     </div>
 </div>
 <!-- ./wrapper -->
+
+<!-- delete flow chart modal -->
+<div id="delete-source-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Delete Source</h4>
+            </div>
+            <div class="modal-body">
+                confirm delete
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-sm btn-danger" data-url="" id="modal-confirm-delete">Delete</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <!-- jQuery 2.2.3 -->
 <script src="../vender/jquery/jquery-2.2.3.min.js"></script>

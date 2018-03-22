@@ -7,6 +7,31 @@ $(document).ready(function () {
     $("#right-content-iframe").attr("style", style_height);
 });
 
+
+
+function post(url, data, callback) {
+    $.ajax({
+        type: "POST",
+        url: url,
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data),
+        dataType: "json",
+        success: callback
+    });
+}
+
+function get(url, callback,errocall) {
+    $.ajax({
+        type: "GET",
+        url: url,
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        success: callback,
+        error:errocall
+    });
+}
+
 function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
     var r = window.location.search.substr(1).match(reg);  //匹配目标参数

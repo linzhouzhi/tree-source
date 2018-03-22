@@ -63,7 +63,7 @@ public abstract class SourceBase implements ITreeSource {
     }
 
     // 子类覆盖后定义自己的样式
-    private String nodeType(String childPath, int childrenNum) {
+    protected String nodeType(String childPath, int childrenNum) {
         String type = "parent";
         if( childrenNum == 0 ){
             type = "leaf";

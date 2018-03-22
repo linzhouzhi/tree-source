@@ -66,6 +66,17 @@ public abstract class SqlDb extends SourceBase{
     }
 
     @Override
+    protected String nodeType(String childPath, int childrenNum) {
+        String type = "root";
+        if( childPath.split("/").length == 2 ){
+            type = "database";
+        }else if( childPath.split("/").length == 3 ){
+            type = "table";
+        }
+        return type;
+    }
+
+    @Override
     public void close() {
         try {
             stmt.close();
