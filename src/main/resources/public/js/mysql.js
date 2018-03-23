@@ -23,3 +23,4 @@ window.tree_node_type = {
         "icon" : "fa fa-flag"
     }
 };
+
