@@ -24,6 +24,13 @@ public abstract class SqlDb extends SourceBase{
         stmt = conn.createStatement();
     }
 
+    public SqlDb(SqlDbType sqlDbType, String address, String database) throws ClassNotFoundException, SQLException {
+        this.sqlDbType = sqlDbType;
+        initMeta( address );
+        conn = DriverManager.getConnection(this.dbUrl + "/" + database, this.username, this.password);
+        stmt = conn.createStatement();
+    }
+
     private void initMeta(String address) throws ClassNotFoundException {
         String[] metas = address.split(",");
         switch (this.sqlDbType){

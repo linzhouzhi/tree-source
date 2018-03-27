@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TreeSource</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<link href="../vender/jquery-highlighttextarea/jquery.highlighttextarea.css" rel="stylesheet" />
+<link href="../vender/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" charset="utf-8" />
+<link href="../css/common.css" rel="stylesheet" charset="utf-8" />
+<style>
+
+</style>
+<body>
+<div class="container-fluid">
+    <div class="clearfix"></div>
+    <div class="form-group">
+        <label>sql</label>
+        <textarea id="sql-textarea" maxlength="1000" class="form-control input-width" style="background: none;font-size:18px;height:100px"></textarea>
+        <span>input </span><span id="sql_input_num">0</span>/1000 length
+    </div><!-- .form-group -->
+    <div class="clearfix"></div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-default sql-button" id="run-sql"> run </button>
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered" id="sql-result">
+        </table>
+    </div><!-- .row -->
+</div><!-- .container-fluid -->
+
+<script src="../vender/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../vender/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/mysql.js"></script>
+<script src="../vender/jquery-highlighttextarea/jquery.highlighttextarea.js"></script>
+<script>
+
+</script>
+</body>
+</html>

@@ -113,7 +113,7 @@ $(function () {
                 window.childrenNodes = data.node.children;
             }
         }
-        $("#right-content-iframe").attr("src", "/welcome?address=" + path);
+        init_page( window.address, path, window.childrenNodes );
     });
 
     $("#jstree").on("open_node.jstree", function (e, data) {
