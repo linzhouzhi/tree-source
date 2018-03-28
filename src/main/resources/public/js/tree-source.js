@@ -56,13 +56,28 @@ $("input[name='modal-input-address']").bind('keypress', function (event) {
     }
 })
 
-$("a.jstree-anchor").on("mouseover mouseout",function(event){
-    if(event.type == "mouseover"){
-        //$("#address-path").text(path);
-    }else if(event.type == "mouseout"){
-        //$("#address-path").text("");
+var xOffset = -5;
+var yOffset = 40;
+$(document).on("mouseover mouseout","li.jstree-node",function(e){
+    if(e.type == "mouseover"){
+        this.t = this.id;
+        this.title = "";
+        var c = (this.t != "") ? "" + this.t : "";
+        $("body").append("<div id='preview' style='border:1px solid #c7c7c7; background:#ffffff; padding:5px; display:none; position:absolute;'>"+ c +"</div>");
+        $("#preview")
+            .css("top",(e.pageY - yOffset) + "px")
+            .css("left",(e.pageX + xOffset) + "px")
+            .fadeIn("fast");
+    }else if(e.type == "mouseout"){
+        $("#preview").remove();
     }
 });
+$(document).on("mousemove","li.jstree-node", function (e) {
+    $("#preview")
+        .css("top",(e.pageY - yOffset) + "px")
+        .css("left",(e.pageX + xOffset) + "px");
+});
+
 
 $(function () {
     var to = false;

@@ -26,10 +26,12 @@ window.tree_node_type = {
 
 $(document).ready(function () {
     var data = getMeta();
-    if( data.table ){
-        var sql = "select * from " + data.table + " limit 100";
-        $("#sql-textarea").val( sql );
-        $("#run-sql").click();
+    if( typeof  data != "undefined" ){
+        if( typeof  data.table != "undefined" &&  data.table != "" ){
+            var sql = "select * from " + data.table + " limit 100";
+            $("#sql-textarea").val( sql );
+            $("#run-sql").click();
+        }
     }
     $("#sql-textarea").autoTextarea({
         maxHeight:420,
@@ -96,7 +98,6 @@ function getMeta() {
 $("#run-sql").click(function () {
     var data = getMeta();
     data.sql = $("#sql-textarea").val();
-    console.log(data);
     $("#sql-result").empty();
     post("/mysql/query", data, function (obj) {
         if( obj.code == 0 ){
