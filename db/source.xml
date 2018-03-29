@@ -4,4 +4,6 @@
 	<element key="mysql_tetst" value="{&quot;address&quot;:&quot;127.0.0.1,root,root&quot;,&quot;showName&quot;:&quot;tetst&quot;,&quot;type&quot;:&quot;mysql&quot;}"/>
 	<element key="mysql_tetst23" value="{&quot;address&quot;:&quot;127.0.0.1,root,root&quot;,&quot;showName&quot;:&quot;tetst23&quot;,&quot;type&quot;:&quot;mysql&quot;}"/>
 	<element key="mysql_cdsafdsa" value="{&quot;address&quot;:&quot;127.0.0.1,root,root&quot;,&quot;showName&quot;:&quot;cdsafdsa&quot;,&quot;type&quot;:&quot;mysql&quot;}"/>
+	<element key="kafka_local" value="{&quot;address&quot;:&quot;localhost:2181&quot;,&quot;showName&quot;:&quot;local&quot;,&quot;type&quot;:&quot;kafka&quot;}"/>
+	<element key="zk_local" value="{&quot;address&quot;:&quot;localhost:2181&quot;,&quot;showName&quot;:&quot;local&quot;,&quot;type&quot;:&quot;zk&quot;}"/>
 </elements>

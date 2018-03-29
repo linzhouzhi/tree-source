@@ -3,20 +3,39 @@ package com.lzz.dao.kafka;
 import com.google.common.collect.Lists;
 import com.lzz.dao.SourceBase;
 import com.lzz.dao.zk.CuratorClient;
+import com.lzz.util.KafkaConsumerUtil;
 
 import java.util.*;
 
 /**
  * Created by lzz on 2018/3/19.
  */
-public class KafkaClient extends SourceBase implements IKafkaClient {
+public class KafkaClient extends SourceBase implements IMQClient {
     private static final String CONSUMER_PATH = "/consumers";
     private Map<String, Set<String>> topicConsumerMap = new HashMap<>();
+    private KafkaConsumerUtil kafkaConsumerUtil;
     private SourceBase curatorClient;
 
+    public KafkaClient(){
+
+    }
     public KafkaClient(String zk){
         curatorClient = new CuratorClient(zk);
         initTopicConsumerMap();
+    }
+
+
+    public void initZkClient(String zk){
+        curatorClient = new CuratorClient(zk);
+        initTopicConsumerMap();
+    }
+
+
+    @Override
+    public List<String> query(List<String> seeds, int port, String topic, List<Integer> partitions, String message) {
+        kafkaConsumerUtil = new KafkaConsumerUtil();
+        List<String> resList = kafkaConsumerUtil.run(topic, partitions, seeds, port, message);
+        return resList;
     }
 
     private void initTopicConsumerMap(){

@@ -89,11 +89,19 @@
             <artifactId>sqlserver</artifactId>
             <version>4.0</version>
         </dependency>
+
         <dependency>
             <groupId>org.jvnet.hudson</groupId>
             <artifactId>ganymed-ssh2</artifactId>
             <version>build210-hudson-1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.10</artifactId>
+            <version>0.8.2.1</version>
+        </dependency>
+
     </dependencies>
 
     <properties>

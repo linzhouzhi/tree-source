@@ -53,7 +53,9 @@ public class SourceLogic {
                 resNode = s.getTnodeList( tnode );
                 break;
             case kafka:
-                s = new KafkaClient( address );
+                KafkaClient kafkaClient = new KafkaClient();
+                s = kafkaClient;
+                kafkaClient.initZkClient(address);
                 resNode = s.getTnodeList( tnode );
                 break;
             case mysql:
